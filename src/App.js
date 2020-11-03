@@ -6,13 +6,14 @@ const App = () => {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://hn.algolia.com/api/v1/search?query=reacthooks")
-      .then((response) => {
-        console.log(response.data);
-        setResults(response.data.hits);
-      });
+    fetchData()
   }, []);
+
+  const fetchData = async () => {
+    const response = await axios
+    .get("http://hn.algolia.com/api/v1/search?query=reacthooks");
+    setResults(response.data.hits)
+  }
 
   return (
     <>
